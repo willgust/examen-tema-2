@@ -20,7 +20,7 @@ namespace placemybet.Models
             {
                 //apuesta = context.apuestas.ToList();
                 //apuesta = context.apuestas.Include(p => p.usuario).ToList();//con esto inluimos la info de apuestas y ademas la de mercados
-                apuesta = context.apuestas.Include(p => p.usuario).Include(p => p.mercado).ToList();
+                apuesta = context.apuestas.Include(p => p.usuario).Include(b => b.mercado).ToList();
 
             }
             //Debug.WriteLine("Recuperado: " + res.GetInt32(0) + " " + res.GetString(1) + " " + res.GetDecimal(2) + " " + res.GetDecimal(3) + " " + res.GetString(4) + " " + res.GetInt32(5) + " " + res.GetInt32(6));
@@ -37,7 +37,7 @@ namespace placemybet.Models
         //metodo xa mostrar datos del EJECICIO 3
         public apuestasExamen ToDTO(apuestas e)
         {
-            return new apuestasExamen(e.usuario, e.cuotaOver, e.cuotaUnder);
+            return new apuestasExamen(e.usuario.nombre, e.mercado.cuotaOver, e.mercado.cuotaUnder);
         }
 
         public List<apuestasExamen> retrieveExamen()

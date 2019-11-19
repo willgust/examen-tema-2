@@ -19,6 +19,7 @@ namespace placemybet.Controllers
         //    return apuesta;
         //}
 
+        // metodo xa llamar retrieveExamen del EJERCICIO 3
         //GET: api/Apuestas
         public IEnumerable<apuestasExamen> Get()
         {
