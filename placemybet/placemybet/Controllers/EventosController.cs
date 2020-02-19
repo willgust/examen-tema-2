@@ -19,6 +19,29 @@ namespace placemybet.Controllers
         //    return evento;
         //}
 
+        //SEGUNDA PREGUNTA DEL EXAMEN
+
+        internal List<eventos> retrieve(string nombreEquipo)
+        {
+
+            List<eventos> evento = new List<eventos>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                //apuesta = context.apuestas.ToList();
+                //apuesta = context.apuestas.Include(p => p.usuario).ToList();//con esto inluimos la info de apuestas y ademas la de mercados
+                context.evento.Include(p => p.ID).ToList();
+                context.apuesta.Include(p => p.MercadoID).ToList();
+                context.apuesta.Where(p => p.equipoLocal == nombreEquipo || p.equpoVisitante == nombreEquipo);
+                evento = context.evento.Include(p => p.apostado).Include(b => b.mercado).ToList();
+
+            }
+            //Debug.WriteLine("Recuperado: " + res.GetInt32(0) + " " + res.GetString(1) + " " + res.GetDecimal(2) + " " + res.GetDecimal(3) + " " + res.GetString(4) + " " + res.GetInt32(5) + " " + res.GetInt32(6));
+            //d = new apuestas(res.GetInt32(0), res.GetString(1), res.GetDecimal(2), res.GetDecimal(3), res.GetString(4), res.GetInt32(5), res.GetInt32(6));
+            //apuesta.Add(d);
+
+            return evento;
+        }
+
         //GET: api/Eventos
         public IEnumerable<EventosDTO> Get()
         {

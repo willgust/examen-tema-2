@@ -11,8 +11,8 @@ namespace placemybet.Models
     public class apuestasRepository
     {
 
-        //modicamos xa q nos devuelva todos los datos, del EJERCICIO 3
-        internal List<apuestas> retrieve()
+        //creamos metodo xa el dinero PRIMERA PREGUNTA EXAMEN
+        internal List<apuestas> retrieve(int dinero)
         {
 
             List<apuestas> apuesta = new List<apuestas>();
@@ -20,7 +20,10 @@ namespace placemybet.Models
             {
                 //apuesta = context.apuestas.ToList();
                 //apuesta = context.apuestas.Include(p => p.usuario).ToList();//con esto inluimos la info de apuestas y ademas la de mercados
-                apuesta = context.apuestas.Include(p => p.usuario).Include(b => b.mercado).ToList();
+                context.apuesta.Include(p => p.ID).ToList();
+                context.apuesta.Include(p => p.MercadoID).ToList();
+                context.apuesta.Where(p => p.apostado >= dinero);
+                apuesta = context.apuesta.Include(p => p.usuario).Include(b => b.mercado).ToList();
 
             }
             //Debug.WriteLine("Recuperado: " + res.GetInt32(0) + " " + res.GetString(1) + " " + res.GetDecimal(2) + " " + res.GetDecimal(3) + " " + res.GetString(4) + " " + res.GetInt32(5) + " " + res.GetInt32(6));
@@ -29,6 +32,81 @@ namespace placemybet.Models
 
             return apuesta;
         }
+
+
+        //internal ApuestaUsuarioDTO RecuperarApuestaUsuarioDTO(int id)
+        //{
+        //    ApuestaUsuarioDTO apuesta = new ApuestaUsuarioDTO();
+        //    //Apuesta ap = new Apuesta();
+        //    using (PlaceMyBetContext context = new PlaceMyBetContext())
+        //    {
+        //        context.Apuestas.Include(a => a.Usuario).ToList();
+        //        context.Apuestas.Where(a => a.apuestaID == id).FirstOrDefault();
+        //        apuesta = context.Apuestas.Select(a => TousuarioDTO(a)).FirstOrDefault();
+        //    }
+        //    return apuesta;
+        //}
+
+        //internal apuestas retrieve(int id)
+        //{
+        //    apuestas apuesta;
+        //    using (PlaceMyBetContext context = new PlaceMyBetContext())
+        //    {
+        //        apuesta = context.apuestas
+        //            .Where(s => s.ID == id)
+        //            .FirstOrDefault();
+        //    }
+        //    return apuesta;
+        //}
+
+        
+
+
+
+
+        /*
+         * internal List<Apuesta> Recuperar()
+        {
+            List<Apuesta> apuestas = new List<Apuesta>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                apuestas = context.Apuestas.Include(p => p.Mercado).ToList();
+            }
+            return apuestas;
+        }
+
+        internal List<ApuestaDTO> RecuperarDTO()
+        {
+            List<ApuestaDTO> apuestas = new List<ApuestaDTO>();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                context.Apuestas.Include(p => p.Mercado).ToList();
+                apuestas = context.Apuestas.Select(a => ToDTO(a)).ToList();
+            }
+            return apuestas;
+        }
+        }
+
+        /// <summary>
+        /// Ejercicio 3
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        internal ApuestaUsuarioDTO RecuperarApuestaUsuarioDTO(int id)
+        {
+            ApuestaUsuarioDTO apuesta = new ApuestaUsuarioDTO();
+            //Apuesta ap = new Apuesta();
+            using (PlaceMyBetContext context = new PlaceMyBetContext())
+            {
+                context.Apuestas.Include(a => a.Usuario).ToList();
+                context.Apuestas.Where(a => a.apuestaID == id).FirstOrDefault();
+                apuesta = context.Apuestas.Select(a => TousuarioDTO(a)).FirstOrDefault();
+            }
+            return apuesta;
+        }
+
+         */
+
         /*Ahora, configura tu aplicaci´on para que cuando se recuperen todas las apuestas,
         se obtenga la siguiente informaci´on: el identificador del usuario, el identificador del
         evento, el tipo de apuesta, la cuota de la apuesta y el dinero de la apuesta.Para
@@ -45,29 +123,30 @@ namespace placemybet.Models
             List<apuestasExamen> apuestas = new List<apuestasExamen>();
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
-                apuestas = context.apuestas.Select(p => ToDTO(p)).ToList();
+                apuestas = context.apuesta.Select(p => ToDTO(p)).ToList();
             }
             return apuestas;
         }
 
-        internal apuestas retrieve(int id)
-        {
-            apuestas apuesta;
-            using (PlaceMyBetContext context = new PlaceMyBetContext())
-            {
-                apuesta = context.apuestas
-                    .Where(s => s.ID == id)
-                    .FirstOrDefault();
-            }
-            return apuesta;
-        }
+        //LO DESCONECTO TEMPORAL
+        //internal apuestas retrieve(int id)
+        //{
+        //    apuestas apuesta;
+        //    using (PlaceMyBetContext context = new PlaceMyBetContext())
+        //    {
+        //        apuesta = context.apuestas
+        //            .Where(s => s.ID == id)
+        //            .FirstOrDefault();
+        //    }
+        //    return apuesta;
+        //}
 
         //metodo xa Post
         internal void save(apuestas d)
         {
             PlaceMyBetContext context = new PlaceMyBetContext();
 
-            context.apuestas.Add(d);
+            context.apuesta.Add(d);
             context.SaveChanges();
         }
 

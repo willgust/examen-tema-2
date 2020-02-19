@@ -324,6 +324,18 @@
     <Compile Include="Migrations\20191105111743_m1.designer.cs">
       <DependentUpon>20191105111743_m1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200219113042_m6.cs" />
+    <Compile Include="Migrations\20200219113042_m6.designer.cs">
+      <DependentUpon>20200219113042_m6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200219113305_creando.cs" />
+    <Compile Include="Migrations\20200219113305_creando.designer.cs">
+      <DependentUpon>20200219113305_creando.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200219113804_creando2.cs" />
+    <Compile Include="Migrations\20200219113804_creando2.designer.cs">
+      <DependentUpon>20200219113804_creando2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PlaceMyBetContextModelSnapshot.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

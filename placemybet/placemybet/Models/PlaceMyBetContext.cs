@@ -16,7 +16,7 @@ namespace placemybet.Models
         //tablas q vamos a crear,nombres en plurar x convenio-
         public DbSet<eventos> eventos { get; set; }
         public DbSet<mercados> mercados { get; set; }
-        public DbSet<apuestas> apuestas { get; set; }
+        public DbSet<apuestas> apuesta { get; set; }
         public DbSet<usuarios> usuarios { get; set; }
         public DbSet<cuentas> cuentas { get; set; }
 

@@ -42,12 +42,12 @@ namespace placemybet.Controllers
         }
 
         // GET: api/Apuestas/5
-        public apuestas Get(int id)
-        {
-            var repo = new apuestasRepository();
-            apuestas d = repo.retrieve(id);
-            return d;
-        }
+        //public apuestas Get(int id)
+        //{
+        //    var repo = new apuestasRepository();
+        //    apuestas d = repo.retrieve(id);
+        //    return d;
+        //}
 
         // POST: api/Apuestas
         //[Authorize] //obligamos al usuario a estar autentificado xa realizar la apuesta

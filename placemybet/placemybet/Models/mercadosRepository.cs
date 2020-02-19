@@ -21,8 +21,8 @@ namespace placemybet.Models
             using (PlaceMyBetContext context = new PlaceMyBetContext())
             {
 
-                //mercado = context.mercados.ToList();
-                mercado = context.mercados.Include(p => p.evento).ToList(); // con esto incluimos la info de mercados y ademas la de eventos
+                mercado = context.mercados.ToList();
+                //mercado = context.mercados.Include(p => p.evento).ToList(); // con esto incluimos la info de mercados y ademas la de eventos
 
             }           
             return mercado; 
